@@ -1,0 +1,20 @@
+version: 0.2
+env:
+  variables:
+    REPOSITORY: $REPOSITORY # CodeBuild-defined environment variable
+phases:
+  build:
+    commands:
+      - pip install git-remote-codecommit
+      - git clone codecommit::$AWS_REGION://$REPOSITORY
+      - cd aws_tester
+      - TAG=build_$CODEBUILD_BUILD_NUMBER
+      - COMMIT_ID=$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo Tagging Commmit ID $COMMIT_ID with tag $TAG
+      - echo $COMMIT_ID
+      - git tag $TAG $COMMIT_ID
+      - git push origin $TAG
+artifacts:
+  files:
+    - '*'
+    - '**/*'
