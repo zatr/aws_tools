@@ -7,7 +7,7 @@ phases:
     commands:
       - pip install git-remote-codecommit
       - git clone codecommit::$AWS_REGION://$REPOSITORY
-      - cd aws_tester
+      - cd $REPOSITORY
       - TAG=build_$CODEBUILD_BUILD_NUMBER
       - COMMIT_ID=$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Tagging Commmit ID $COMMIT_ID with tag $TAG
