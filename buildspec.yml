@@ -1,7 +1,7 @@
 version: 0.2
 env:
   exported-variables:
-    CODEBUILD_BUILD_NUMBER
+    - CODEBUILD_BUILD_NUMBER
   variables:
     REPOSITORY: $REPOSITORY # CodeBuild-defined environment variable
 phases:
